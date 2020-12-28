@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Carbon Bae</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{request.user.first_name}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/logout/">Log Out</a>
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<h1 style="text-align: center;">Complete Your profile here</h1>
+<div class="container">
+
+<form action="/completeprofile" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="form-group">
+      <label for="profile">Add Your Profile Pic</label>
+      <input type="file" class="form-control-file" id="profile" name="profile">
+      <h4>Add Bio</h4>
+      <textarea name="bio" id="bio" ></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </form>
+</div>
+{% endblock body %}
